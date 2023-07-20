@@ -37,7 +37,7 @@ Para comenzar a utilizar MySQL, necesitarás instalar el software del servidor M
 </details>
 
 <details>
-<summary><b>Instalación MySQL en windows</b>
+<summary><b>Instalación MySQL en windows</b></summary>
 
 1. **Descarga del instalador**: Ve al sitio web oficial de MySQL (**https://dev.mysql.com/downloads/installer/**) y descarga el instalador de MySQL para Windows. Asegúrate de elegir la versión adecuada para tu sistema operativo (32 o 64 bits).
 2. **Ejecutar el instalador**: Una vez que hayas descargado el instalador, haz doble clic en el archivo descargado para ejecutarlo.
@@ -49,8 +49,6 @@ Para comenzar a utilizar MySQL, necesitarás instalar el software del servidor M
 8. **Comprobar la instalación**: Para asegurarte de que MySQL se ha instalado correctamente, puedes abrir el "MySQL Command Line Client" desde el menú de inicio o ejecutar el comando **`mysql`** en la línea de comandos. Si se abre el cliente de línea de comandos de MySQL y te pide la contraseña del usuario root, significa que la instalación fue exitosa.
 
 ¡Listo! Ahora tienes MySQL instalado en tu computadora con Windows y estás listo para empezar a utilizarlo para crear y administrar bases de datos. Puedes utilizar el cliente de línea de comandos o interfaces gráficas como MySQL Workbench para interactuar con la base de datos de forma más visual.
-
-</summary>
 
 </details>
 
@@ -73,7 +71,7 @@ La instalación de MySQL en macOS es relativamente sencilla y puede hacerse sigu
 </details>
 
 <details>
-<summary><b>Creación de Bases de Datos y Tablas</b>
+<summary><b>Creación de Bases de Datos y Tablas</b> </summary>
 
 En MySQL, puedes crear bases de datos y tablas utilizando comandos SQL a través del cliente de línea de comandos o mediante una herramienta de administración gráfica como MySQL Workbench. A continuación, te mostraré cómo crear bases de datos y tablas utilizando el cliente de línea de comandos:
 
@@ -119,7 +117,5 @@ En este ejemplo, hemos creado una tabla llamada "libros" con las siguientes colu
 - "existencias": un número entero para almacenar la cantidad de existencias del libro.
 
 Una vez que hayas ejecutado los comandos anteriores, habrás creado una base de datos llamada "mi_base_de_datos" y una tabla llamada "libros" dentro de esa base de datos. Ahora puedes empezar a insertar datos en la tabla y realizar consultas para interactuar con la información almacenada.
-
-</summary>
 
 </details>
