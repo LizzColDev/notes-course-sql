@@ -119,3 +119,314 @@ En este ejemplo, hemos creado una tabla llamada "libros" con las siguientes colu
 Una vez que hayas ejecutado los comandos anteriores, habrás creado una base de datos llamada "mi_base_de_datos" y una tabla llamada "libros" dentro de esa base de datos. Ahora puedes empezar a insertar datos en la tabla y realizar consultas para interactuar con la información almacenada.
 
 </details>
+
+<details>
+<summary><b>INSERT, ALTER TABLE y SHOW CREATE</b> </summary>
+
+1. **INSERT**:
+
+El comando "INSERT" se utiliza para agregar nuevos registros (filas) a una tabla existente en la base de datos. Es como colocar nueva información en una tabla. La sintaxis básica del comando INSERT es la siguiente:
+
+```sql
+INSERT INTO nombre_de_la_tabla (columna1, columna2, columna3, ...)
+VALUES (valor1, valor2, valor3, ...);
+```
+
+Por ejemplo, si tenemos una tabla llamada "personas" con las columnas "nombre", "edad" y "ciudad", podemos insertar un nuevo registro así:
+
+```sql
+INSERT INTO personas (nombre, edad, ciudad)
+VALUES ('Juan', 30, 'Madrid');
+```
+
+Este comando añadirá un nuevo registro en la tabla "personas" con el nombre "Juan", edad "30" y ciudad "Madrid".
+
+2. **ALTER TABLE**:
+
+El comando "ALTER TABLE" se utiliza para modificar la estructura de una tabla existente. Puedes agregar nuevas columnas, eliminar columnas, cambiar el tipo de datos de una columna y más. La sintaxis básica del comando ALTER TABLE es la siguiente:
+
+```sql
+ALTER TABLE nombre_de_la_tabla
+accion_a_realizar;
+```
+
+Por ejemplo, si queremos agregar una nueva columna "correo_electronico" a la tabla "personas", podemos usar este comando:
+
+```sql
+ALTER TABLE personas
+ADD correo_electronico VARCHAR(100);
+```
+
+Esto agregará una nueva columna llamada "correo_electronico" a la tabla "personas" con un límite de 100 caracteres.
+
+3. **SHOW CREATE TABLE**:
+
+El comando "SHOW CREATE TABLE" se utiliza para ver la definición completa de una tabla, incluyendo todos los detalles de sus columnas y restricciones. La sintaxis es la siguiente:
+
+```sql
+SHOW CREATE TABLE nombre_de_la_tabla;
+```
+
+Por ejemplo, si queremos ver la definición de la tabla "personas", podemos ejecutar este comando:
+
+```sql
+SHOW CREATE TABLE personas;
+```
+
+Este comando mostrará la estructura completa de la tabla "personas", incluyendo el nombre de las columnas, los tipos de datos, las claves primarias, restricciones, etc.
+
+</details>
+
+<details>
+<summary><b>SELECT, UPDATE y DELETE</b> </summary>
+
+1. **SELECT**:
+
+El comando "SELECT" se utiliza para recuperar datos de una tabla en la base de datos. Es como una consulta que le haces a la base de datos para obtener información específica. La sintaxis básica del comando SELECT es la siguiente:
+
+```sql
+SELECT columna1, columna2, columna3, ...
+FROM nombre_de_la_tabla
+WHERE condicion;
+```
+
+Por ejemplo, si tenemos una tabla llamada "empleados" con las columnas "nombre", "edad", "salario" y queremos obtener los nombres y salarios de todos los empleados mayores de 25 años, podemos usar este comando:
+
+```sql
+SELECT nombre, salario
+FROM empleados
+WHERE edad > 25;
+```
+
+2. **UPDATE**:
+
+El comando "UPDATE" se utiliza para modificar registros existentes en una tabla. Es como actualizar la información de la tabla con nuevos valores. La sintaxis básica del comando UPDATE es la siguiente:
+
+```sql
+UPDATE nombre_de_la_tabla
+SET columna1 = valor1, columna2 = valor2, ...
+WHERE condicion;
+```
+
+Por ejemplo, si queremos aumentar el salario de un empleado específico en la tabla "empleados", podemos usar este comando:
+
+```sql
+UPDATE empleados
+SET salario = salario * 1.10
+WHERE nombre = 'Juan';
+```
+
+Este comando aumentará el salario de "Juan" en un 10%.
+
+3. **DELETE**:
+
+El comando "DELETE" se utiliza para eliminar registros de una tabla. Es como borrar información de la tabla de la base de datos. La sintaxis básica del comando DELETE es la siguiente:
+
+```sql
+DELETE FROM nombre_de_la_tabla
+WHERE condicion;
+```
+
+Por ejemplo, si queremos eliminar a un empleado de la tabla "empleados" que ya no trabaja en la empresa, podemos usar este comando:
+
+```sql
+DELETE FROM empleados
+WHERE nombre = 'Ana';
+```
+
+Este comando eliminará todas las filas que coincidan con la condición donde el nombre sea "Ana".
+
+Recuerda que estos comandos son poderosos y deben utilizarse con cuidado para evitar la pérdida accidental de datos importantes. Siempre asegúrate de tener copias de seguridad adecuadas antes de realizar cambios significativos en la base de datos.
+</details>
+
+<details>
+<summary><b>Condiciones en profundidad</b> </summary>
+
+
+<details>
+<summary><b>WHERE</b> </summary>
+
+La cláusula WHERE se utiliza en la sentencia SELECT, UPDATE o DELETE para filtrar filas basadas en una condición específica. La sintaxis básica es la siguiente:
+
+```sql
+SELECT columna1, columna2, ...
+FROM nombre_de_la_tabla
+WHERE condicion;
+
+```
+
+Por ejemplo, para seleccionar todos los empleados con un salario mayor a 3000:
+
+```sql
+SELECT nombre, salario
+FROM empleados
+WHERE salario > 3000;
+
+```
+
+En este caso, la condición "salario > 3000" filtra solo aquellos registros donde el salario es mayor a 3000.
+</details>
+
+<details>
+<summary><b>Operadores de comparación</b> </summary>
+
+MySQL ofrece varios operadores de comparación que se pueden utilizar en las condiciones, como:
+
+- **`=`**: igual a
+- **`<>`** o **`!=`**: diferente de
+- **`<`**: menor que
+- **`>`**: mayor que
+- **`<=`**: menor o igual que
+- **`>=`**: mayor o igual que
+
+Puedes combinar múltiples condiciones utilizando operadores lógicos como **`AND`** y **`OR`**. Por ejemplo:
+
+```sql
+SELECT nombre, edad
+FROM empleados
+WHERE salario > 3000 AND edad <= 35;
+```
+
+Esta consulta seleccionará empleados con un salario mayor a 3000 y una edad menor o igual a 35 años.
+</details>
+
+<details>
+<summary><b>Operadores LIKE</b> </summary>
+
+El operador **`LIKE`** se utiliza para realizar búsquedas de patrones en cadenas de texto. Puedes usar **`%`** para representar cualquier cantidad de caracteres y **`_`** para un solo carácter. Por ejemplo:
+
+```sql
+SELECT nombre
+FROM empleados
+WHERE nombre LIKE 'J%';
+```
+
+Esta consulta seleccionará empleados cuyos nombres comiencen con la letra 'J'.
+</details>
+
+<details>
+<summary><b>IN y NOT IN</b> </summary>
+
+Los operadores **`IN`** y **`NOT IN`** se utilizan para comparar un valor con una lista de valores. Por ejemplo:
+
+```sql
+SELECT nombre
+FROM empleados
+WHERE departamento IN ('Ventas', 'Marketing');
+```
+
+Esta consulta seleccionará empleados cuyo departamento sea "Ventas" o "Marketing".
+</details>
+
+<details>
+<summary><b>IS NULL e IS NOT NULL</b> </summary>
+
+Estos operadores se utilizan para verificar si un valor es nulo o no nulo. Por ejemplo:
+
+```sql
+SELECT nombre
+FROM empleados
+WHERE telefono IS NULL;
+```
+
+Esta consulta seleccionará empleados que no tengan un número de teléfono registrado.
+</details>
+
+</details>
+
+<details>
+<summary><b>Seleccionando columnas</b> </summary>
+
+Para seleccionar columnas específicas en MySQL, utilizamos la cláusula **`SELECT`**. La sintaxis básica para seleccionar columnas es la siguiente:
+
+```sql
+SELECT columna1, columna2, columna3, ...
+FROM nombre_de_la_tabla;
+```
+
+Donde **`columna1`**, **`columna2`**, etc., son los nombres de las columnas que deseas recuperar de la tabla **`nombre_de_la_tabla`**.
+
+Por ejemplo, si tenemos una tabla llamada "empleados" con las columnas "nombre", "edad", "departamento" y "salario", y queremos seleccionar solo los nombres y salarios de todos los empleados, utilizaríamos el siguiente comando:
+
+```sql
+SELECT nombre, salario
+FROM empleados;
+```
+
+Esto nos dará un resultado que contiene solo las columnas "nombre" y "salario" de la tabla "empleados".
+
+También puedes seleccionar todas las columnas de una tabla utilizando el asterisco **`*`**. Por ejemplo:
+
+```sql
+SELECT *
+FROM empleados;
+```
+
+Esto seleccionará todas las columnas de la tabla "empleados".
+
+Adicionalmente, puedes utilizar funciones de agregación como **`SUM`**, **`COUNT`**, **`AVG`**, **`MIN`** y **`MAX`** en la cláusula **`SELECT`** para realizar cálculos en los datos de una columna o grupo de columnas. Por ejemplo:
+
+```sql
+SELECT COUNT(*) AS total_empleados, AVG(salario) AS salario_promedio
+FROM empleados;
+```
+
+Esta consulta devolverá el número total de empleados y el salario promedio de todos los empleados en la tabla "empleados".
+
+Recuerda que al seleccionar columnas, puedes utilizar alias con la cláusula **`AS`** para cambiar el nombre de las columnas en los resultados, como se muestra en el ejemplo anterior. Esto puede ser útil para hacer que los resultados sean más legibles y comprensibles.
+</details>
+
+<details>
+<summary><b>Agregar varios registros a una base de datos</b> </summary>
+
+Para agregar varios registros (filas) a una base de datos en MySQL, puedes utilizar el comando **`INSERT INTO`** junto con la sintaxis **`VALUES`** para insertar múltiples conjuntos de datos en una sola sentencia. Esto te permite agregar varios registros de una vez en lugar de ejecutar un comando **`INSERT`** por cada registro individual. Aquí tienes un ejemplo de cómo hacerlo:
+
+Supongamos que tienes una tabla llamada "productos" con las siguientes columnas: "id" (número de identificación), "nombre" (nombre del producto) y "precio" (precio del producto).
+
+Para agregar varios productos a la tabla "productos" al mismo tiempo, puedes hacer lo siguiente:
+
+```sql
+INSERT INTO productos (nombre, precio)
+VALUES
+  ('Producto A', 19.99),
+  ('Producto B', 24.50),
+  ('Producto C', 12.75),
+  ('Producto D', 8.99);
+```
+
+En este ejemplo, hemos utilizado una sola sentencia **`INSERT INTO`** con múltiples conjuntos de datos separados por comas en la cláusula **`VALUES`**. Cada conjunto de datos corresponde a un nuevo registro que queremos agregar a la tabla "productos". Cada conjunto de datos contiene los valores para las columnas "nombre" y "precio" respectivamente.
+
+Cuando ejecutes esta sentencia, se agregarán los cuatro productos a la tabla "productos" en una sola operación.
+
+Es importante asegurarse de que los valores que insertes cumplan con las restricciones y tipos de datos definidos para cada columna en la tabla. También es recomendable hacer copias de seguridad de la base de datos antes de realizar operaciones masivas de inserción, para evitar pérdida accidental de datos en caso de errores.
+</details>
+
+<details>
+<summary><b>left join</b> </summary>
+
+La cláusula **`LEFT JOIN`** en MySQL se utiliza para combinar dos tablas en una consulta, recuperando todas las filas de la tabla de la izquierda y las filas coincidentes de la tabla de la derecha. Si no hay coincidencias en la tabla de la derecha, se mostrarán valores NULL en las columnas correspondientes. Esta operación es útil cuando deseas recuperar información de una tabla principal junto con información relacionada de otra tabla.
+
+La sintaxis básica del **`LEFT JOIN`** es la siguiente:
+
+```sql
+SELECT columnas
+FROM tabla_izquierda
+LEFT JOIN tabla_derecha
+ON tabla_izquierda.columna = tabla_derecha.columna;
+```
+
+Por ejemplo, supongamos que tienes dos tablas: "productos" y "categorias". La tabla "productos" contiene información sobre los productos, y la tabla "categorias" contiene información sobre las categorías a las que pertenecen los productos. Queremos recuperar todos los productos junto con sus categorías correspondientes, incluso si algunos productos no tienen una categoría asociada.
+
+```sql
+SELECT productos.nombre, productos.precio, categorias.nombre AS categoria
+FROM productos
+LEFT JOIN categorias
+ON productos.categoria_id = categorias.id;
+```
+
+En este ejemplo, estamos seleccionando las columnas "nombre" y "precio" de la tabla "productos" y la columna "nombre" de la tabla "categorias" (que hemos renombrado como "categoria" usando **`AS categoria`**). Hacemos un **`LEFT JOIN`** entre las dos tablas en la columna "categoria_id" de la tabla "productos" y la columna "id" de la tabla "categorias".
+
+El resultado mostrará todos los productos junto con sus precios y la categoría a la que pertenecen. Si un producto no tiene una categoría asociada (es decir, si no hay una coincidencia en la tabla "categorias"), la columna "categoria" mostrará un valor NULL para ese producto.
+
+El **`LEFT JOIN`** es útil cuando deseas asegurarte de obtener todas las filas de la tabla de la izquierda, incluso si no hay coincidencias en la tabla de la derecha. Esto te permite tener una visión completa de los datos incluso si algunos registros no tienen datos relacionados en la otra tabla.
+</details>
